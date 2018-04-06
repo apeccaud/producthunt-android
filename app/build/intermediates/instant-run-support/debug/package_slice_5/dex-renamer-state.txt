@@ -1,4 +1,4 @@
-#Fri Apr 06 13:39:31 CEST 2018
+#Fri Apr 06 16:15:09 CEST 2018
 base.0=/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/transforms/dexMerger/debug/5
 path.0=classes.dex
 renamed.0=classes.dex
