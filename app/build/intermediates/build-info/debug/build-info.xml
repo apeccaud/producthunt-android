@@ -2,34 +2,30 @@
 <instant-run
     abi="x86"
     api-level="21"
-    build-mode="COLD"
+    build-mode="HOT_WARM"
     density="420dpi"
     format="10"
-    ir-eligibility="FIELD_TYPE_CHANGE"
     plugin-version="3.0.1"
-    timestamp="1523090457039"
+    timestamp="1523092856294"
     token="-4906027387705027271"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="1887" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="121" />
+        duration="0" />
     <task
         name="verifier"
-        duration="67" />
+        duration="0" />
 
     <artifact
-        location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/outputs/apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
+        location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/instant-run-resources/resources-debug.ir.ap_"
+        type="RESOURCES" />
 
     <build
         build-mode="FULL"
@@ -74,8 +70,14 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1523024106517"
-        verifier="MANIFEST_FILE_CHANGE" >
+        timestamp="1523092659290"
+        verifier="R_CLASS_CHANGE" >
+        <artifact
+            location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
         <artifact
             location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
@@ -86,29 +88,25 @@
             location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1523024274203"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/outputs/apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1523090457039"
-        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
         <artifact
             location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/outputs/apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1523092856294"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/instant-run-resources/resources-debug.ir.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

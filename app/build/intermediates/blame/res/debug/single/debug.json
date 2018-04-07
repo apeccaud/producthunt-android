@@ -572,6 +572,10 @@
         "source": "/Users/alex59493/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/b7a0f5ed0eabe359836caed16c525d0b/res/drawable/abc_ic_clear_material.xml"
     },
     {
+        "merged": "/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/res/merged/debug/layout_item_highlight.xml.flat",
+        "source": "/Users/alex59493/AndroidStudioProjects/Producthunt/app/src/main/res/layout/item_highlight.xml"
+    },
+    {
         "merged": "/Users/alex59493/AndroidStudioProjects/Producthunt/app/build/intermediates/res/merged/debug/drawable_abc_ic_search_api_material.xml.flat",
         "source": "/Users/alex59493/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/b7a0f5ed0eabe359836caed16c525d0b/res/drawable/abc_ic_search_api_material.xml"
     },

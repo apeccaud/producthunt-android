@@ -36,7 +36,8 @@ public class PostAdapter extends BaseAdapter {
     ViewHolder viewHolder;
 
     if (convertView == null) {
-      convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+      int layoutId = position == 0 ? R.layout.item_highlight : R.layout.item;
+      convertView = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
 
       viewHolder = new ViewHolder();
       viewHolder.title = convertView.findViewById(R.id.title);
