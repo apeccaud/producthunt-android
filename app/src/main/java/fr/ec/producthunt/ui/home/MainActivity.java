@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements PostsFragments.Ca
         FragmentManager fm = getSupportFragmentManager();
 
         switch (menuItem.getItemId()) {
-//          case R.id.nav_coll:
-//            fragment = new CollectionsFragments();
-//            break;
+          case R.id.nav_coll:
+            fragment = new CollectionsFragments();
+            break;
           case R.id.nav_pub:
             fragment = new PostsFragments();
             break;
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements PostsFragments.Ca
     }
 
     // Default fragment is set to PostsFragments
+    Fragment fragment = null;
     FragmentManager fm = getSupportFragmentManager();
-    Fragment fragment = new PostsFragments();
-    fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
   }
 
   @Override public void onClickPost(Post post) {

@@ -7,6 +7,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import static android.content.ContentValues.TAG;
+import static fr.ec.producthunt.ui.home.CollectionsFragments.SyncCollectionReceiver.ACTION_LOAD_COLLECTIONS;
 import static fr.ec.producthunt.ui.home.PostsFragments.SyncPostReceiver.ACTION_LOAD_POSTS;
 
 /**
@@ -15,13 +16,17 @@ import static fr.ec.producthunt.ui.home.PostsFragments.SyncPostReceiver.ACTION_L
  */
 public class SyncService extends IntentService {
   private static final String ACTION_FETCH_NEW_POSTS =
-      "fr.ec.producthunt.data.action.FETCH_NEW_POSTS";
+          "fr.ec.producthunt.data.action.FETCH_NEW_POSTS";
+
+  private static final String ACTION_FETCH_NEW_COLLECTIONS =
+          "fr.ec.producthunt.data.action.FETCH_NEW_COLLECTIONS";
 
   public SyncService() {
     super("SyncService");
   }
 
-  @Override public void onCreate() {
+  @Override
+  public void onCreate() {
     super.onCreate();
   }
 
@@ -37,12 +42,21 @@ public class SyncService extends IntentService {
     context.startService(intent);
   }
 
-  @Override protected void onHandleIntent(Intent intent) {
+  public static void startSyncCollections(Context context) {
+    Intent intent = new Intent(context, SyncService.class);
+    intent.setAction(ACTION_FETCH_NEW_COLLECTIONS);
+    context.startService(intent);
+  }
+
+  @Override
+  protected void onHandleIntent(Intent intent) {
     if (intent != null) {
       final String action = intent.getAction();
       if (ACTION_FETCH_NEW_POSTS.equals(action)) {
         handleActionFetchNewPosts();
         Log.d(TAG, "handleActionFetchNewPosts is Ok");
+      } else if (ACTION_FETCH_NEW_COLLECTIONS.equals(action)){
+        handleActionFetchNewCollections();
       }
     }
   }
@@ -56,6 +70,14 @@ public class SyncService extends IntentService {
     DataProvider.getInstance(this.getApplication()).syncPost();
     Intent intentToSend = new Intent();
     intentToSend.setAction(ACTION_LOAD_POSTS);
+    LocalBroadcastManager.getInstance(this).sendBroadcast(intentToSend);
+  }
+
+  private void handleActionFetchNewCollections() {
+
+    DataProvider.getInstance(this.getApplication()).syncCollection();
+    Intent intentToSend = new Intent();
+    intentToSend.setAction(ACTION_LOAD_COLLECTIONS);
     LocalBroadcastManager.getInstance(this).sendBroadcast(intentToSend);
   }
 }

@@ -2,8 +2,11 @@ package fr.ec.producthunt.data;
 
 import android.app.Application;
 import android.util.Log;
+
+import fr.ec.producthunt.data.database.CollectionDao;
 import fr.ec.producthunt.data.database.PostDao;
 import fr.ec.producthunt.data.database.ProductHuntDbHelper;
+import fr.ec.producthunt.data.model.Collection;
 import fr.ec.producthunt.data.model.Post;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,9 +24,14 @@ public class DataProvider {
   public static final String POST_API_END_POINT =
       "https://api.producthunt.com/v1/posts?access_token=46a03e1c32ea881c8afb39e59aa17c936ff4205a8ed418f525294b2b45b56abb&sort_by=created_at&order=desc";
 
+  public static final String COLLECTION_API_END_POINT =
+          "https://api.producthunt.com/v1/collections?access_token=46a03e1c32ea881c8afb39e59aa17c936ff4205a8ed418f525294b2b45b56abb";
+
   private JsonPostParser jsonPostParser = new JsonPostParser();
+  private JsonCollectionParser jsonCollectionParser = new JsonCollectionParser();
 
   private final PostDao postDao;
+  private final CollectionDao collectionDao;
 
   private static DataProvider dataProvider;
 
@@ -37,9 +45,10 @@ public class DataProvider {
 
   public DataProvider(ProductHuntDbHelper dbHelper) {
     postDao = new PostDao(dbHelper);
+    collectionDao = new CollectionDao(dbHelper);
   }
 
-  private String getPostsFromWeb(String apiUrl) {
+  private String getStuffFromWeb(String apiUrl) {
 
     HttpURLConnection urlConnection = null;
     BufferedReader reader = null;
@@ -98,16 +107,27 @@ public class DataProvider {
     return postDao.retrievePosts();
   }
 
+  public List<Collection> getCollectionsFromDatabase() {
+    return collectionDao.retrieveCollections();
+  }
 
   public Boolean syncPost() {
-
-    List<Post> list = jsonPostParser.jsonToPosts(getPostsFromWeb(POST_API_END_POINT));
-
+    List<Post> list = jsonPostParser.jsonToPosts(getStuffFromWeb(POST_API_END_POINT));
 
     int nb = 0;
-
     for (Post post : list) {
       postDao.save(post);
+      nb++;
+    }
+    return nb > 0;
+  }
+
+  public Boolean syncCollection() {
+    List<Collection> list = jsonCollectionParser.jsonToCollections(getStuffFromWeb(COLLECTION_API_END_POINT));
+
+    int nb = 0;
+    for (Collection collection : list) {
+      collectionDao.save(collection);
       nb++;
     }
     return nb > 0;
