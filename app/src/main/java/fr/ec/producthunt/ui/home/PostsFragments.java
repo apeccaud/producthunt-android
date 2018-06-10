@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +72,17 @@ public class PostsFragments extends Fragment {
     });
     viewAnimator = rootView.findViewById(R.id.main_view_animator);
     listView.setAdapter(postAdapter);
+
+    final SwipeRefreshLayout mySwipeRefreshLayout = rootView.findViewById(R.id.posts_swipe_refresh_layout);
+    mySwipeRefreshLayout.setOnRefreshListener(
+      new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+          refreshPosts();
+          mySwipeRefreshLayout.setRefreshing(false);
+        }
+      }
+    );
 
     return rootView;
   }
