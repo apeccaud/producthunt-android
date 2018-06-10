@@ -8,6 +8,7 @@ public class Post {
   private String subTitle;
   private String imageUrl;
   private String postUrl;
+  private String commentsCount;
   private long id;
 
   public String getTitle() {
@@ -50,6 +51,14 @@ public class Post {
     return id;
   }
 
+  public void setcommentsCount(String commentsCount) {
+    this.commentsCount = commentsCount;
+  }
+
+  public String getcommentsCount() {
+    return commentsCount;
+  }
+
   public ContentValues toContentValues() {
 
     ContentValues contentValues = new ContentValues();
@@ -58,6 +67,7 @@ public class Post {
     contentValues.put(DataBaseContract.PostTable.SUBTITLE_COLUMN, subTitle);
     contentValues.put(DataBaseContract.PostTable.IMAGE_URL_COLUMN, imageUrl);
     contentValues.put(DataBaseContract.PostTable.POST_URL_COLUMN, postUrl);
+    contentValues.put(DataBaseContract.PostTable.POST_COMMENTSCOUNT_COLUMN, commentsCount);
     return contentValues;
   }
 

@@ -43,6 +43,7 @@ public class PostAdapter extends BaseAdapter {
       viewHolder.title = convertView.findViewById(R.id.title);
       viewHolder.subTitle = convertView.findViewById(R.id.sub_title);
       viewHolder.postImage = convertView.findViewById(R.id.img_product);
+      viewHolder.commentsCount = convertView.findViewById(R.id.comments_count);
 
       convertView.setTag(viewHolder);
     } else {
@@ -53,7 +54,7 @@ public class PostAdapter extends BaseAdapter {
     Post post = dataSource.get(position);
     viewHolder.title.setText(post.getTitle());
     viewHolder.subTitle.setText(post.getSubTitle());
-
+    viewHolder.commentsCount.setText(post.getcommentsCount());
 
     Picasso.with(parent.getContext())
         .load(post.getImageUrl())
@@ -74,5 +75,6 @@ public class PostAdapter extends BaseAdapter {
     TextView title;
     TextView subTitle;
     ImageView postImage;
+    TextView commentsCount;
   }
 }

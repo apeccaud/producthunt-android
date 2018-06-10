@@ -15,13 +15,13 @@
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:layout_below="@id/img_product"
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="94dp"
+        android:layout_below="@id/img_product"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
@@ -39,6 +39,14 @@
             android:padding="2dp"
             android:textAppearance="?android:textAppearanceListItemSecondary"
             tools:text="Capture stunning 360 video for virtual reality, by Samsung" />
+
+        <TextView
+            android:id="@+id/comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:textAppearance="?android:textAppearanceListItemSecondary"
+            tools:text="2 comments" />
 
     </LinearLayout>
 </RelativeLayout>

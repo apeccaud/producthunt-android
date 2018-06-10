@@ -51,7 +51,7 @@ public class JsonPostParser {
     post.setPostUrl(postJson.getString("redirect_url"));
 
     post.setImageUrl(postJson.getJSONObject("thumbnail").getString("image_url"));
-
+    post.setcommentsCount(postJson.getString("comments_count") + " commentaires");
 
     return post;
   }
