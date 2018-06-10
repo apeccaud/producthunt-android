@@ -57,7 +57,7 @@ public class PostsFragments extends Fragment {
 
     syncPostReceiver = new SyncPostReceiver();
 
-    postAdapter = new PostAdapter();
+    postAdapter = new PostAdapter(callback);
 
     ListView listView = rootView.findViewById(R.id.list_item);
     listView.setEmptyView(rootView.findViewById(R.id.empty_element));
@@ -166,5 +166,6 @@ public class PostsFragments extends Fragment {
 
   public interface Callback {
     void onClickPost(Post post);
+    void onClickComment(Post post);
   }
 }

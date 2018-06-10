@@ -4,9 +4,11 @@ import android.app.Application;
 import android.util.Log;
 
 import fr.ec.producthunt.data.database.CollectionDao;
+import fr.ec.producthunt.data.database.CommentDao;
 import fr.ec.producthunt.data.database.PostDao;
 import fr.ec.producthunt.data.database.ProductHuntDbHelper;
 import fr.ec.producthunt.data.model.Collection;
+import fr.ec.producthunt.data.model.Comment;
 import fr.ec.producthunt.data.model.Post;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,9 +31,11 @@ public class DataProvider {
 
   private JsonPostParser jsonPostParser = new JsonPostParser();
   private JsonCollectionParser jsonCollectionParser = new JsonCollectionParser();
+  private JsonCommentParser jsonCommentParser = new JsonCommentParser();
 
   private final PostDao postDao;
   private final CollectionDao collectionDao;
+  private final CommentDao commentDao;
 
   private static DataProvider dataProvider;
 
@@ -46,6 +50,11 @@ public class DataProvider {
   public DataProvider(ProductHuntDbHelper dbHelper) {
     postDao = new PostDao(dbHelper);
     collectionDao = new CollectionDao(dbHelper);
+    commentDao = new CommentDao(dbHelper);
+  }
+
+  public static String getCommetsForPostId(Long postId) {
+    return "https://api.producthunt.com/v1/posts/"+postId+"/comments?access_token=46a03e1c32ea881c8afb39e59aa17c936ff4205a8ed418f525294b2b45b56abb";
   }
 
   private String getStuffFromWeb(String apiUrl) {
@@ -111,6 +120,10 @@ public class DataProvider {
     return collectionDao.retrieveCollections();
   }
 
+  public List<Comment> getCommentsFromDatabase() {
+    return commentDao.retrieveComments();
+  }
+
   public Boolean syncPost() {
     List<Post> list = jsonPostParser.jsonToPosts(getStuffFromWeb(POST_API_END_POINT));
 
@@ -128,6 +141,16 @@ public class DataProvider {
     int nb = 0;
     for (Collection collection : list) {
       collectionDao.save(collection);
+      nb++;
+    }
+    return nb > 0;
+  }
+
+  public Boolean syncComments(Long postId) {
+    List<Comment> list = jsonCommentParser.jsonToComments(getStuffFromWeb(getCommetsForPostId(postId)));
+    int nb = 0;
+    for (Comment comment : list) {
+      commentDao.save(comment);
       nb++;
     }
     return nb > 0;

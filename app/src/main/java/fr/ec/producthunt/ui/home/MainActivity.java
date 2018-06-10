@@ -87,4 +87,11 @@ public class MainActivity extends AppCompatActivity implements PostsFragments.Ca
       startActivity(intent);
     }
   }
+
+  @Override
+  public void onClickComment(Post post) {
+    CommentsFragments fragment = CommentsFragments.newInstance(post.getId(), post.getTitle());
+    FragmentManager fm = getSupportFragmentManager();
+    fm.beginTransaction().replace(R.id.content_frame, fragment).commit();
+  }
 }

@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 public final class DataBaseContract {
 
   public static final String DATABASE_NAME = "database";
-  public static final int DATABASE_VERSION = 1;
+  public static final int DATABASE_VERSION = 3;
 
   public static final String TEXT_TYPE = " TEXT";
   public static final String COMM_SPA = ",";
@@ -79,4 +79,43 @@ public final class DataBaseContract {
     };
   }
 
+  public static final class CommentTable implements BaseColumns {
+
+    public static final String TABLE_NAME = "comment";
+
+    public static final String ID_COLUMN = "id";
+    public static final String ID_POST_COLUMN = "post_id";
+    public static final String CONTENT_COLUMN = "content";
+    public static final String DATE_COLUMN = "date";
+    public static final String AUTHOR_NAME_COLUMN = "author_name";
+    public static final String AUTHOR_USERNAME_COLUMN = "author_username";
+    public static final String AUTHOR_PROFIL_PIC_COLUMN = "author_profilpic";
+    public static final String AUTHOR_HEADLINE_COLUMN = "author_headline";
+
+
+    public static final String SQL_CREATE_COMMENT_TABLE =
+            "CREATE TABLE " + CommentTable.TABLE_NAME + " (" +
+                    ID_COLUMN + INTEGER_TYPE + " PRIMARY KEY" + COMM_SPA +
+                    ID_POST_COLUMN + TEXT_TYPE + COMM_SPA +
+                    CONTENT_COLUMN + TEXT_TYPE + COMM_SPA +
+                    DATE_COLUMN + TEXT_TYPE + COMM_SPA +
+                    AUTHOR_NAME_COLUMN + TEXT_TYPE + COMM_SPA +
+                    AUTHOR_USERNAME_COLUMN + TEXT_TYPE + COMM_SPA +
+                    AUTHOR_PROFIL_PIC_COLUMN + TEXT_TYPE + COMM_SPA +
+                    AUTHOR_HEADLINE_COLUMN + TEXT_TYPE +
+                    ")";
+
+    public static final String SQL_DROP_COMMENT_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    public static String[] PROJECTIONS = new String[]{
+            ID_COLUMN,
+            ID_POST_COLUMN,
+            CONTENT_COLUMN,
+            DATE_COLUMN,
+            AUTHOR_NAME_COLUMN,
+            AUTHOR_USERNAME_COLUMN,
+            AUTHOR_PROFIL_PIC_COLUMN,
+            AUTHOR_HEADLINE_COLUMN
+    };
+  }
 }

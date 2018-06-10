@@ -15,8 +15,10 @@ import java.util.List;
 public class PostAdapter extends BaseAdapter {
 
   private List<Post> dataSource = Collections.emptyList();
+  private PostsFragments.Callback callback;
 
-  public PostAdapter() {
+  public PostAdapter(PostsFragments.Callback callback) {
+    this.callback = callback;
   }
 
   @Override public int getCount() {
@@ -51,10 +53,16 @@ public class PostAdapter extends BaseAdapter {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    Post post = dataSource.get(position);
+    final Post post = dataSource.get(position);
     viewHolder.title.setText(post.getTitle());
     viewHolder.subTitle.setText(post.getSubTitle());
     viewHolder.commentsCount.setText(post.getcommentsCount());
+    viewHolder.commentsCount.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        callback.onClickComment(post);
+      }
+    });
 
     Picasso.with(parent.getContext())
         .load(post.getImageUrl())
